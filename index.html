@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <title>直接运行 html 代码</title>
+    <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">
+  </head>
+  <body>
+    <!-- <center><textarea style='width:300px;height:200px;' id='txtCode'></textarea><br/> -->
+    <center><textarea style='width:95%;height:2000%;' id='txtCode'></textarea><br/>
+    <input type='button' value='直接运行' id='btnRun'/>
+    <input type="button" value="清空代码" onclick="qk()">
+    <input type="button" value="默认代码" onclick="code()">
+    <input type="button" value="帮助" onclick="a()">
+    </center>
+    <script>//运行代码
+      document.getElementById('btnRun').onclick = function(){
+        var runHtml = document.getElementById('txtCode').value;
+        if(runHtml){
+          var win = window.open('', '运行窗口');
+          win.document.open();
+          win.document.write(runHtml);
+          win.document.close();
+        }
+        else{
+          alert('请输入!');
+        }
+      }
+    </script>
+
+    <script type="text/javascript">//执行
+      code()
+      function qk(){//清空代码
+        document.getElementById('txtCode').value = "";
+      }
+      function code(){//默认代码
+        document.getElementById('txtCode').value = "<!DOCTYPE html>\n<html>\n<head>\n<title></title>\n</head>\n<body>\n\n</body>\n</html>\n\n\n<center><input type='button' name='' value='关闭本页' onclick='window.close();'></center><!-- 关闭页面 -->"
+      }
+      function about(){//关于
+
+      }
+      function a(){
+        OpenWindow = window.open("", "newwin","height=220,width=470,toolbar=no,scrollbars="+scroll+",menubar=no")
+        OpenWindow.document.write("<body bgcolor='white' text='black' alink='blue'vlink='blue' link='blue' style='background-color:#000000;'><TITLE>帮助信息</TITLE>")
+        OpenWindow.document.write("<center><a style='color: #00FF00'>by:麦子</a></center><br>")
+        OpenWindow.document.write("<center><a href='javascript:close()'>关闭本窗口</a></Center>")
+        OpenWindow.document.close();
+        //self.nam = "main"
+      }
+    </script>
+  </body>
+</html>
