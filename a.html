@@ -2,25 +2,65 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>nativeShare.js Demo</title>
+    <title>a</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta name="description" content="demo" />
-    <script src="https://raw.githubusercontent.com/JefferyWang/nativeShare.js/master/nativeShare.js"></script>
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/JefferyWang/nativeShare.js/master/nativeShare.css"/>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
 </head>
 <body>
-    <div id="nativeShare"></div>
-
     <script>
-        var config = {
-            url:'http://blog.wangjunfeng.com',
-            title:'王俊锋的个人博客',
-            desc:'王俊锋的个人博客',
-            img:'http://www.wangjunfeng.com/img/face.jpg',
-            img_title:'王俊锋的个人博客',
-            from:'王俊锋的博客'
-        };
-        var share_obj = new nativeShare('nativeShare',config);
+        // 微信分享
+      var wx = require('wechat-sdk');
+      rewardsResultService.getWechatInfo().then(function(data) {
+        var conf = data;
+        wx.config({
+         debug: false,
+         appId: 'wx34e783920b37ee91',
+         timestamp: conf.timestamp,
+         nonceStr: conf.noncestr,
+         signature: conf.signature,
+         jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline','onMenuShareQQ']
+        });
+        configWeChatInterface();
+      });
+ 
+      var iconUrl = 'http://'+location.host+'/images/icon-200yuan.png';
+      function configWeChatInterface() {
+        //分享给朋友
+        wx.onMenuShareAppMessage({
+         title: '一言不合就发红包，金蛛送您200元红包！',
+         desc: '一言不合就发红包，金蛛送您200元红包！',
+         link: location.href,
+         imgUrl: iconUrl,
+         type: 'link',
+         success: function() {
+           // alert('share success');
+         },
+         cancel: function() {
+ 
+         }
+        });
+        //分享到朋友圈
+        wx.onMenuShareTimeline({
+         title: '一言不合就发红包，金蛛送您200元红包！',
+         link: location.href, // 分享链接
+         imgUrl: iconUrl
+        });
+        //分享到QQ
+        wx.onMenuShareQQ({
+          title: '一言不合就发红包，金蛛送您200元红包！', // 分享标题
+          desc: '一言不合就发红包，金蛛送您200元红包！', // 分享描述
+          link: location.href, // 分享链接
+          imgUrl: iconUrl, // 分享图标
+          success: function () { 
+            // 用户确认分享后执行的回调函数
+          },
+          cancel: function () { 
+            // 用户取消分享后执行的回调函数
+          }
+        });
+      }
+      alert("a")
     </script>
 </body>
 </html>
