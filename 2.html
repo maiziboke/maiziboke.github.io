@@ -4,18 +4,32 @@
 <title></title>
 </head>
 <body>
-<input type="text" onclick="copy('api.xslfgame.com/wxchatlogin/index?agentId={$member['id']}')" value="api.xslfgame.com/wxchatlogin/index?agentId={$member['id']}" readonly="readonly">
+<textarea name="text" id="text" cols="30" rows="10" readonly="readonly">fdsfasdfsdfa</textarea>
+<div class="button"><button onclick="myCopy()">点击复制</button></div>
 
-<script language="javascript">
-function copy(message) {
-        var input = document.createElement("input");
-            input.value = message;
-            document.body.appendChild(input);
-            input.select();
-            input.setSelectionRange(0, input.value.length), document.execCommand('Copy');
-            document.body.removeChild(input);
-            $.toast("复制成功", "text");
+<script>
+
+function myCopy(){
+
+      var ele = document.getElementById("text");//ele是要复制的元素的对象
+
+      ele.focus();
+
+     // ele.select();
+     ele.setSelectionRange(0, ele.value.length);
+
+
+
+     if(document.execCommand('copy', false, null)){
+       //success info
+        alert("复制成功")
+      } else{
+        //fail info
+        alert("复制失败")
+      }
+
 }
+
 </script>
 </body>
 </html>
